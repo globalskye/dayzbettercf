@@ -44,6 +44,8 @@ export interface Player {
   created_at: string;
   updated_at: string;
   nicknames?: string[];
+  /** Связанные аккаунты с флагами: confirmed = CFTools подтвердил связь, trusted = отмечен доверенным */
+  linked_accounts?: { cftools_id: string; confirmed: boolean; trusted: boolean }[];
   linked_cftools_ids?: string[];
   server_ids?: string[];
   last_server_identifier?: string;

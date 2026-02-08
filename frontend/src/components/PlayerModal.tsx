@@ -287,23 +287,40 @@ export function PlayerModal({
                   </section>
                 )}
 
-                {player.linked_cftools_ids && player.linked_cftools_ids.length > 0 && (
-                  <section className="info-card">
-                    <h3>Связанные ({player.linked_cftools_ids.length})</h3>
-                    <div className="link-list">
-                      {player.linked_cftools_ids.slice(0, 10).map((lid) => (
-                        <button
-                          key={lid}
-                          type="button"
-                          className="link-item"
-                          onClick={() => onOpenPlayer?.(lid) ?? onClose()}
-                        >
-                          {lid}
-                        </button>
-                      ))}
-                    </div>
-                  </section>
-                )}
+                {(() => {
+                  const links = player.linked_accounts?.length
+                    ? player.linked_accounts
+                    : (player.linked_cftools_ids ?? []).map((cftools_id) => ({ cftools_id, confirmed: false, trusted: false }))
+                  if (links.length === 0) return null
+                  return (
+                    <section className="info-card">
+                      <h3>Связанные аккаунты ({links.length})</h3>
+                      <p className="link-list-hint">
+                        confirmed — CFTools подтвердил связь (например с одного устройства); trusted — отмечен доверенным. Клик — открыть профиль.
+                      </p>
+                      <div className="link-list">
+                        {links.slice(0, 15).map((link) => (
+                          <button
+                            key={link.cftools_id}
+                            type="button"
+                            className="link-item"
+                            onClick={() => onOpenPlayer?.(link.cftools_id) ?? onClose()}
+                            title="Открыть профиль"
+                          >
+                            <span className="link-item-id">{link.cftools_id}</span>
+                            {(link.confirmed || link.trusted) && (
+                              <span className="link-item-badges">
+                                {link.confirmed && <span className="badge badge-confirmed">confirmed</span>}
+                                {link.trusted && <span className="badge badge-trusted">trusted</span>}
+                              </span>
+                            )}
+                          </button>
+                        ))}
+                      </div>
+                      {links.length > 15 && <span className="link-list-more">+{links.length - 15} ещё</span>}
+                    </section>
+                  )
+                })()}
 
                 {player.raw_bans &&
                   (() => {

@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { usePlayerModal } from '../context/PlayerModalContext'
 import { PlayerActionsModal } from '../components/PlayerActionsModal'
 import { ActivityHeatmap } from '../components/ActivityHeatmap'
+import { HistoryPopover } from '../components/HistoryPopover'
 import {
   fetchTracked,
   fetchGroups,
@@ -143,7 +144,11 @@ export function TrackedPage() {
                   <td>
                     {p.online ? <span className="badge online">online</span> : <span className="badge offline">offline</span>}
                   </td>
-                  <td className="server-cell" title={p.last_server_identifier || ''}>{p.last_server_identifier || '—'}</td>
+                  <td className="server-cell">
+                    <HistoryPopover cftoolsId={p.cftools_id} displayName={p.display_name}>
+                      <span className="server-cell-text" title={p.last_server_identifier || ''}>{p.last_server_identifier || '—'}</span>
+                    </HistoryPopover>
+                  </td>
                   <td>{formatPlaytime(p.playtime_sec ?? 0)}</td>
                   <td>{p.bans_count ?? 0}</td>
                   <td className="date-cell">{formatDate(p.updated_at)}</td>

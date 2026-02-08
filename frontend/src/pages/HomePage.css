@@ -523,9 +523,19 @@
 .server-cell {
   font-size: 0.8rem;
   color: rgba(255, 255, 255, 0.6);
-  max-width: 150px;
+  max-width: 180px;
+}
+
+.server-cell .history-popover-wrap {
+  min-width: 0;
+}
+
+.server-cell .server-cell-text {
+  display: block;
+  max-width: 100%;
   overflow: hidden;
   text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .server-badge {

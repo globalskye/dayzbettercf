@@ -224,6 +224,13 @@
   font-size: 0.8rem;
 }
 
+.link-list-hint {
+  margin: 0 0 0.5rem;
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.5);
+  line-height: 1.4;
+}
+
 .link-list {
   display: flex;
   flex-wrap: wrap;
@@ -231,6 +238,10 @@
 }
 
 .link-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  flex-wrap: wrap;
   padding: 0.25rem 0.5rem;
   background: rgba(125, 211, 252, 0.1);
   border: 1px solid rgba(125, 211, 252, 0.2);
@@ -238,10 +249,43 @@
   color: #7dd3fc;
   font-size: 0.8rem;
   cursor: pointer;
+  text-decoration: none;
 }
 
 .link-item:hover {
   background: rgba(125, 211, 252, 0.2);
+}
+
+.link-item-id {
+  word-break: break-all;
+}
+
+.link-item-badges {
+  display: inline-flex;
+  gap: 0.2rem;
+  flex-shrink: 0;
+}
+
+.badge-confirmed {
+  font-size: 0.65rem;
+  padding: 0.1rem 0.35rem;
+  background: rgba(34, 197, 94, 0.2);
+  color: #4ade80;
+  border-radius: 4px;
+}
+
+.badge-trusted {
+  font-size: 0.65rem;
+  padding: 0.1rem 0.35rem;
+  background: rgba(14, 165, 233, 0.2);
+  color: #7dd3fc;
+  border-radius: 4px;
+}
+
+.link-list-more {
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.5);
+  margin-left: 0.35rem;
 }
 
 .bans-list {

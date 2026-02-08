@@ -275,21 +275,34 @@ export function PlayerPage() {
           </section>
         )}
 
-        {player.linked_cftools_ids && player.linked_cftools_ids.length > 0 && (
-          <section className="info-card">
-            <h3>Связанные аккаунты ({player.linked_cftools_ids.length})</h3>
-            <div className="link-list">
-              {player.linked_cftools_ids.slice(0, 20).map((lid) => (
-                <Link key={lid} to={`/players/${lid}`} className="link-item">
-                  {lid}
-                </Link>
-              ))}
-              {player.linked_cftools_ids.length > 20 && (
-                <span className="more">+{player.linked_cftools_ids.length - 20} ещё</span>
-              )}
-            </div>
-          </section>
-        )}
+        {(() => {
+          const links = player.linked_accounts?.length
+            ? player.linked_accounts
+            : (player.linked_cftools_ids ?? []).map((cftools_id) => ({ cftools_id, confirmed: false, trusted: false }))
+          if (links.length === 0) return null
+          return (
+            <section className="info-card">
+              <h3>Связанные аккаунты ({links.length})</h3>
+              <p className="link-list-hint">
+                <strong>confirmed</strong> — CFTools подтвердил связь (например с одного устройства); <strong>trusted</strong> — отмечен доверенным. Клик — переход в профиль.
+              </p>
+              <div className="link-list">
+                {links.slice(0, 20).map((link) => (
+                  <Link key={link.cftools_id} to={`/players/${link.cftools_id}`} className="link-item">
+                    <span className="link-item-id">{link.cftools_id}</span>
+                    {(link.confirmed || link.trusted) && (
+                      <span className="link-item-badges">
+                        {link.confirmed && <span className="badge badge-confirmed">confirmed</span>}
+                        {link.trusted && <span className="badge badge-trusted">trusted</span>}
+                      </span>
+                    )}
+                  </Link>
+                ))}
+              </div>
+              {links.length > 20 && <span className="more">+{links.length - 20} ещё</span>}
+            </section>
+          )
+        })()}
 
         {player.raw_bans && (() => {
           try {

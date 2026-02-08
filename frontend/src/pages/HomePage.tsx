@@ -14,6 +14,7 @@ import {
   type Group,
 } from '../api/client'
 import { LoadingSpinner } from '../components/LoadingSpinner'
+import { HistoryPopover } from '../components/HistoryPopover'
 import './HomePage.css'
 
 /** Строка списка: либо только state из CF, либо игрок из базы (после «В базу»). */
@@ -243,7 +244,11 @@ export function HomePage() {
                     <td>
                       {p.online ? <span className="badge online">online</span> : <span className="badge offline">offline</span>}
                     </td>
-                    <td className="server-cell" title={serverLabel(p)}>{serverLabel(p)}</td>
+                    <td className="server-cell">
+                      <HistoryPopover cftoolsId={p.cftools_id} displayName={p.display_name}>
+                        <span className="server-cell-text" title={serverLabel(p)}>{serverLabel(p)}</span>
+                      </HistoryPopover>
+                    </td>
                     <td>{p.playtime_sec != null ? formatPlaytime(p.playtime_sec) : '—'}</td>
                     <td>{p.bans_count != null ? p.bans_count : '—'}</td>
                     <td className="date-cell">{p.updated_at ? formatDate(p.updated_at) : '—'}</td>

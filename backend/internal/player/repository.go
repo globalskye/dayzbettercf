@@ -5,37 +5,45 @@ import (
 	"time"
 )
 
+// LinkedAccount — связанный аккаунт: confirmed = CFTools подтвердил связь (например с одного устройства), trusted = отмечен как доверенный.
+type LinkedAccount struct {
+	CftoolsID string `json:"cftools_id"`
+	Confirmed bool   `json:"confirmed"`
+	Trusted   bool   `json:"trusted"`
+}
+
 type Player struct {
-	ID                  int64      `json:"id"`
-	CftoolsID           string     `json:"cftools_id"`
-	DisplayName         string     `json:"display_name"`
-	Avatar              string     `json:"avatar,omitempty"`
-	IsBot               bool       `json:"is_bot"`
-	AccountStatus       int        `json:"account_status"`
-	PlaytimeSec         int64      `json:"playtime_sec"`
-	SessionsCount       int        `json:"sessions_count"`
-	BansCount           int        `json:"bans_count"`
-	LinkedAccountsCount int        `json:"linked_accounts_count"`
-	LastActivityAt      *time.Time `json:"last_activity_at,omitempty"`
-	LastSeenAt          *time.Time `json:"last_seen_at,omitempty"`
-	Online              bool       `json:"online"`
-	RawStatus           string     `json:"raw_status,omitempty"`
-	RawOverview         string     `json:"raw_overview,omitempty"`
-	RawStructure        string     `json:"raw_structure,omitempty"`
-	RawPlayState        string     `json:"raw_play_state,omitempty"`
-	RawBans             string     `json:"raw_bans,omitempty"`
-	RawBattlEye         string     `json:"raw_battleye,omitempty"`
-	Steam64             string     `json:"steam64,omitempty"`
-	SteamAvatar         string     `json:"steam_avatar,omitempty"`
-	SteamPersona        string     `json:"steam_persona,omitempty"`
-	SteamVacBans        int        `json:"steam_vac_bans,omitempty"`
-	SteamGameBans       int        `json:"steam_game_bans,omitempty"`
-	CreatedAt           time.Time  `json:"created_at"`
-	UpdatedAt           time.Time  `json:"updated_at"`
-	Nicknames           []string   `json:"nicknames,omitempty"`
-	LinkedCftoolsIDs    []string   `json:"linked_cftools_ids,omitempty"`
-	ServerIDs           []string   `json:"server_ids,omitempty"`
-	LastServerIdentifier string    `json:"last_server_identifier,omitempty"`
+	ID                   int64           `json:"id"`
+	CftoolsID            string          `json:"cftools_id"`
+	DisplayName          string          `json:"display_name"`
+	Avatar               string          `json:"avatar,omitempty"`
+	IsBot                bool            `json:"is_bot"`
+	AccountStatus        int             `json:"account_status"`
+	PlaytimeSec          int64           `json:"playtime_sec"`
+	SessionsCount        int             `json:"sessions_count"`
+	BansCount            int             `json:"bans_count"`
+	LinkedAccountsCount  int             `json:"linked_accounts_count"`
+	LastActivityAt       *time.Time      `json:"last_activity_at,omitempty"`
+	LastSeenAt           *time.Time      `json:"last_seen_at,omitempty"`
+	Online               bool            `json:"online"`
+	RawStatus            string          `json:"raw_status,omitempty"`
+	RawOverview          string          `json:"raw_overview,omitempty"`
+	RawStructure         string          `json:"raw_structure,omitempty"`
+	RawPlayState         string          `json:"raw_play_state,omitempty"`
+	RawBans              string          `json:"raw_bans,omitempty"`
+	RawBattlEye          string          `json:"raw_battleye,omitempty"`
+	Steam64              string          `json:"steam64,omitempty"`
+	SteamAvatar          string          `json:"steam_avatar,omitempty"`
+	SteamPersona         string          `json:"steam_persona,omitempty"`
+	SteamVacBans         int             `json:"steam_vac_bans,omitempty"`
+	SteamGameBans        int             `json:"steam_game_bans,omitempty"`
+	CreatedAt            time.Time       `json:"created_at"`
+	UpdatedAt            time.Time       `json:"updated_at"`
+	Nicknames            []string        `json:"nicknames,omitempty"`
+	LinkedAccounts       []LinkedAccount `json:"linked_accounts,omitempty"`
+	LinkedCftoolsIDs     []string        `json:"linked_cftools_ids,omitempty"`
+	ServerIDs            []string        `json:"server_ids,omitempty"`
+	LastServerIdentifier string          `json:"last_server_identifier,omitempty"`
 }
 
 type Repository struct {
@@ -206,10 +214,12 @@ func (r *Repository) GetByCftoolsID(cftoolsID string) (*Player, error) {
 	}
 	rows.Close()
 
-	rows, _ = r.db.Query("SELECT linked_cftools_id FROM player_links WHERE player_id = ?", p.ID)
+	rows, _ = r.db.Query("SELECT linked_cftools_id, confirmed, trusted FROM player_links WHERE player_id = ?", p.ID)
 	for rows.Next() {
 		var id string
-		_ = rows.Scan(&id)
+		var confirmed, trusted int
+		_ = rows.Scan(&id, &confirmed, &trusted)
+		p.LinkedAccounts = append(p.LinkedAccounts, LinkedAccount{CftoolsID: id, Confirmed: confirmed != 0, Trusted: trusted != 0})
 		p.LinkedCftoolsIDs = append(p.LinkedCftoolsIDs, id)
 	}
 	rows.Close()

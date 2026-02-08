@@ -1,0 +1,124 @@
+.history-popover-wrap {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  min-width: 0;
+}
+
+.history-popover-trigger {
+  cursor: pointer;
+  width: 100%;
+  min-width: 0;
+  text-align: left;
+  padding: 0.15rem 0;
+  border-radius: var(--radius-sm, 6px);
+  transition: background 0.15s;
+}
+
+.history-popover-trigger:hover {
+  background: var(--bg-hover, rgba(255, 255, 255, 0.06));
+}
+
+.history-popover-dropdown {
+  position: absolute;
+  left: 0;
+  top: 100%;
+  margin-top: 2px;
+  z-index: 100;
+  min-width: 320px;
+  max-width: 420px;
+  max-height: 360px;
+  background: var(--bg-card, #1a1a2e);
+  border: 1px solid var(--border-default, rgba(255, 255, 255, 0.1));
+  border-radius: var(--radius-lg, 12px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.history-popover-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-sm, 0.5rem) var(--space-md, 1rem);
+  border-bottom: 1px solid var(--border-subtle, rgba(255, 255, 255, 0.06));
+  flex-shrink: 0;
+}
+
+.history-popover-title {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-primary, #fff);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.history-popover-close {
+  flex-shrink: 0;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  background: none;
+  border: none;
+  color: var(--text-muted, rgba(255, 255, 255, 0.5));
+  cursor: pointer;
+  font-size: 1.25rem;
+  line-height: 1;
+  border-radius: var(--radius-sm, 6px);
+}
+
+.history-popover-close:hover {
+  color: var(--text-primary, #fff);
+  background: var(--bg-hover, rgba(255, 255, 255, 0.06));
+}
+
+.history-popover-body {
+  padding: var(--space-sm, 0.5rem);
+  overflow-y: auto;
+  flex: 1;
+  min-height: 0;
+}
+
+.history-popover-loading,
+.history-popover-error,
+.history-popover-empty {
+  margin: 0;
+  padding: var(--space-md, 1rem);
+  font-size: 0.9rem;
+  color: var(--text-muted, rgba(255, 255, 255, 0.5));
+}
+
+.history-popover-error {
+  color: #f87171;
+}
+
+.history-popover-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 0.8rem;
+  line-height: 1.5;
+}
+
+.history-popover-list li {
+  padding: 0.35rem 0.5rem;
+  border-radius: var(--radius-sm, 6px);
+  margin-bottom: 2px;
+}
+
+.history-popover-list li:last-child {
+  margin-bottom: 0;
+}
+
+.history-popover-online {
+  color: rgba(34, 197, 94, 0.95);
+}
+
+.history-popover-offline {
+  color: var(--text-secondary, rgba(255, 255, 255, 0.7));
+}

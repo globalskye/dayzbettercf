@@ -12,6 +12,7 @@ import {
   type Group,
 } from '../api/client'
 import { LoadingSpinner, LoadingOverlay } from '../components/LoadingSpinner'
+import { HistoryPopover } from '../components/HistoryPopover'
 import './BasePage.css'
 import './HomePage.css'
 
@@ -229,7 +230,11 @@ export function BasePage() {
                     <td>
                       {p.online ? <span className="badge online">online</span> : <span className="badge offline">offline</span>}
                     </td>
-                    <td className="server-cell" title={p.last_server_identifier || ''}>{p.last_server_identifier || '—'}</td>
+                    <td className="server-cell">
+                      <HistoryPopover cftoolsId={p.cftools_id} displayName={p.display_name}>
+                        <span className="server-cell-text" title={p.last_server_identifier || ''}>{p.last_server_identifier || '—'}</span>
+                      </HistoryPopover>
+                    </td>
                     <td>{formatPlaytime(p.playtime_sec ?? 0)}</td>
                     <td>{p.bans_count ?? 0}</td>
                     <td className="date-cell">{formatDate(p.updated_at)}</td>
