@@ -1,0 +1,29 @@
+# Секреты и конфиг
+.env
+.env.*
+!.env.example
+!.env.docker.example
+*.local
+
+# Базы и данные
+*.db
+*.db-journal
+db.json
+cftools_auth.json
+
+# Сборки и артефакты
+node_modules/
+dist/
+*.exe
+
+# IDE и ОС
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+
+# Логи
+*.log
+logs/

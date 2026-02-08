@@ -1,0 +1,98 @@
+.history-stats-row {
+  margin: 0.5rem 0;
+}
+
+.history-total {
+  font-weight: 600;
+  color: rgba(34, 197, 94, 0.95);
+}
+
+.history-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
+  margin: 0.5rem 0;
+}
+
+.history-control-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.history-select {
+  padding: 0.3rem 0.5rem;
+  font-size: 0.85rem;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 6px;
+  background: rgba(0, 0, 0, 0.3);
+  color: #fff;
+  cursor: pointer;
+}
+
+.history-period-total {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.history-error,
+.history-empty {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.5);
+  margin: 0.5rem 0;
+}
+
+.online-graph-inline {
+  display: flex;
+  align-items: flex-end;
+  gap: 1px;
+  height: 32px;
+  margin-top: 0.5rem;
+}
+
+.graph-bar-inline {
+  flex: 1;
+  min-width: 2px;
+  border-radius: 1px;
+}
+
+.graph-bar-inline.online {
+  background: #22c55e;
+}
+
+.graph-bar-inline.offline {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.history-log {
+  list-style: none;
+  padding: 0;
+  margin: 0.75rem 0 0;
+  font-size: 0.85rem;
+  max-height: 240px;
+  overflow-y: auto;
+}
+
+.history-log li {
+  padding: 0.25rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.history-log li:last-child {
+  border-bottom: none;
+}
+
+.history-log .history-online {
+  color: rgba(34, 197, 94, 0.95);
+}
+
+.history-log .history-offline {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.history-log-compact {
+  max-height: 140px;
+}

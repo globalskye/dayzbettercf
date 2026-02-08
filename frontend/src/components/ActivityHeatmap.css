@@ -1,0 +1,139 @@
+.activity-heatmap-wrap {
+  position: relative;
+  margin: 0.75rem 0;
+}
+
+.activity-heatmap {
+  display: flex;
+  flex-direction: row;
+  gap: 3px;
+  overflow-x: auto;
+  padding: 4px 0;
+}
+
+.heatmap-column {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.heatmap-cell {
+  width: 12px;
+  height: 12px;
+  border-radius: 2px;
+  cursor: default;
+  transition: background-color 0.1s;
+}
+
+.heatmap-cell.level-0 {
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.heatmap-cell.level-1 {
+  background: rgba(34, 197, 94, 0.35);
+}
+
+.heatmap-cell.level-2 {
+  background: rgba(34, 197, 94, 0.6);
+}
+
+.heatmap-cell.level-3 {
+  background: rgba(34, 197, 94, 0.85);
+}
+
+.heatmap-cell.level-4 {
+  background: #22c55e;
+}
+
+.heatmap-cell:hover {
+  outline: 1px solid rgba(255, 255, 255, 0.4);
+  outline-offset: 1px;
+}
+
+.heatmap-tooltip {
+  position: absolute;
+  z-index: 10;
+  pointer-events: none;
+  padding: 8px 12px;
+  font-size: 12px;
+  max-width: 320px;
+  background: rgba(0, 0, 0, 0.92);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 6px;
+  color: #fff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+.heatmap-tooltip-content {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.heatmap-tooltip-title {
+  font-weight: 600;
+  padding-bottom: 4px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.heatmap-tooltip-sessions {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.heatmap-tooltip-session {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  font-size: 11px;
+}
+
+.heatmap-tooltip-server {
+  color: #7dd3fc;
+  font-weight: 500;
+}
+
+.heatmap-tooltip-time {
+  color: rgba(255, 255, 255, 0.75);
+  margin-left: 0;
+}
+
+.activity-heatmap-legend {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: 8px;
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.legend-label {
+  margin-right: 2px;
+}
+
+.legend-cell {
+  width: 10px;
+  height: 10px;
+  border-radius: 2px;
+}
+
+.legend-cell.level-0 {
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.legend-cell.level-1 {
+  background: rgba(34, 197, 94, 0.35);
+}
+
+.legend-cell.level-2 {
+  background: rgba(34, 197, 94, 0.6);
+}
+
+.legend-cell.level-3 {
+  background: rgba(34, 197, 94, 0.85);
+}
+
+.legend-cell.level-4 {
+  background: #22c55e;
+}

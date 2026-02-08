@@ -1,0 +1,427 @@
+.player-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 1.5rem;
+  overflow-y: auto;
+}
+
+.player-modal {
+  position: relative;
+  background: linear-gradient(180deg, #1a1a2e 0%, #12121f 100%);
+  border: 1px solid rgba(125, 211, 252, 0.2);
+  border-radius: 16px;
+  max-width: 720px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 25px 80px rgba(0, 0, 0, 0.6);
+}
+
+.player-modal-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 36px;
+  height: 36px;
+  border: none;
+  background: rgba(255, 255, 255, 0.08);
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 1.5rem;
+  line-height: 1;
+  border-radius: 8px;
+  cursor: pointer;
+  z-index: 10;
+}
+
+.player-modal-close:hover {
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+}
+
+.player-modal-loading,
+.player-modal-error {
+  padding: 4rem 2rem;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.player-modal-header {
+  padding: 1.5rem 1.5rem 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.player-modal-body {
+  padding: 1rem 1.5rem 1.5rem;
+}
+
+.player-header-main {
+  display: flex;
+  gap: 1.25rem;
+}
+
+.player-avatar-lg {
+  width: 80px;
+  height: 80px;
+  border-radius: 12px;
+  object-fit: cover;
+}
+
+.player-avatar-placeholder-lg {
+  width: 80px;
+  height: 80px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.player-header-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.player-header-info h1 {
+  margin: 0 0 0.5rem;
+  font-size: 1.35rem;
+}
+
+.player-header-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin-bottom: 0.5rem;
+}
+
+.player-header-badges .badge.server {
+  font-size: 0.7rem;
+  max-width: 200px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  background: rgba(125, 211, 252, 0.2);
+  color: #7dd3fc;
+}
+
+.player-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.sync-btn,
+.tracked-btn {
+  padding: 0.4rem 0.75rem;
+  font-size: 0.85rem;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.sync-btn {
+  background: rgba(125, 211, 252, 0.15);
+  border: 1px solid rgba(125, 211, 252, 0.3);
+  color: #7dd3fc;
+}
+
+.tracked-btn.tracked {
+  background: rgba(34, 197, 94, 0.15);
+  border: 1px solid rgba(34, 197, 94, 0.4);
+  color: #22c55e;
+}
+
+.add-to-group {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.add-to-group select,
+.add-alias-input {
+  padding: 0.4rem 0.6rem;
+  font-size: 0.85rem;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  background: rgba(0, 0, 0, 0.3);
+  color: #fff;
+}
+
+.add-btn {
+  padding: 0.4rem 0.75rem;
+  font-size: 0.85rem;
+  background: rgba(34, 197, 94, 0.3);
+  border: 1px solid rgba(34, 197, 94, 0.5);
+  border-radius: 8px;
+  color: #22c55e;
+  cursor: pointer;
+}
+
+.player-grid-info {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1rem;
+}
+
+.info-card {
+  padding: 1rem;
+  background: rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 12px;
+}
+
+.info-card h3 {
+  margin: 0 0 0.75rem;
+  font-size: 0.95rem;
+}
+
+.info-card dl {
+  margin: 0;
+}
+
+.info-card dt {
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.info-card dd {
+  margin: 0 0 0.5rem;
+  font-size: 0.9rem;
+}
+
+.steam-block {
+  display: flex;
+  gap: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+
+.steam-avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 8px;
+}
+
+.steam-link {
+  color: #7dd3fc;
+  text-decoration: none;
+}
+
+.cftools-link {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.tag-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+
+.tag {
+  padding: 0.2rem 0.5rem;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 6px;
+  font-size: 0.8rem;
+}
+
+.link-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+
+.link-item {
+  padding: 0.25rem 0.5rem;
+  background: rgba(125, 211, 252, 0.1);
+  border: 1px solid rgba(125, 211, 252, 0.2);
+  border-radius: 6px;
+  color: #7dd3fc;
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+
+.link-item:hover {
+  background: rgba(125, 211, 252, 0.2);
+}
+
+.bans-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.bans-list li {
+  padding: 0.35rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  font-size: 0.85rem;
+}
+
+.ban-reason {
+  display: block;
+}
+
+.ban-date {
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.online-graph-inline {
+  display: flex;
+  align-items: flex-end;
+  gap: 1px;
+  height: 28px;
+}
+
+.graph-bar-inline {
+  flex: 1;
+  min-width: 2px;
+  border-radius: 1px;
+}
+
+.graph-bar-inline.online {
+  background: #22c55e;
+}
+
+.graph-bar-inline.offline {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.history-hint {
+  margin: 0 0 0.5rem;
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.history-log {
+  list-style: none;
+  padding: 0;
+  margin: 0.5rem 0 0;
+  font-size: 0.8rem;
+  max-height: 160px;
+  overflow-y: auto;
+}
+
+.history-log li {
+  padding: 0.2rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.history-log .history-online {
+  color: rgba(34, 197, 94, 0.95);
+}
+
+.history-log .history-offline {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+/* ——— Телефон / планшет: модалка крупнее, всё влезает ——— */
+@media (max-width: 768px) {
+  .player-modal-overlay {
+    padding: 0.75rem;
+    align-items: flex-start;
+    padding-top: 2rem;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .player-modal {
+    max-width: 100%;
+    width: 100%;
+    max-height: 92vh;
+    border-radius: 14px;
+  }
+
+  .player-modal-close {
+    top: 0.75rem;
+    right: 0.75rem;
+    width: 44px;
+    height: 44px;
+    font-size: 1.5rem;
+    min-width: 44px;
+    min-height: 44px;
+  }
+
+  .player-modal-header {
+    padding: 1rem 1rem 0.75rem;
+  }
+
+  .player-modal-body {
+    padding: 0.75rem 1rem 1rem;
+  }
+
+  .player-header-main {
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .player-avatar-lg,
+  .player-avatar-placeholder-lg {
+    width: 64px;
+    height: 64px;
+  }
+
+  .player-header-info h1 {
+    font-size: 1.2rem;
+  }
+
+  .player-grid-info {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+
+  .info-card {
+    padding: 0.85rem;
+  }
+
+  .player-actions {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .add-to-group {
+    width: 100%;
+  }
+
+  .add-to-group select,
+  .add-alias-input {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .history-log {
+    max-height: 140px;
+  }
+}
+
+@media (max-width: 480px) {
+  .player-modal-overlay {
+    padding: 0.5rem;
+    padding-top: 1.5rem;
+  }
+
+  .player-modal {
+    max-height: 95vh;
+  }
+
+  .player-modal-close {
+    width: 40px;
+    height: 40px;
+    min-width: 40px;
+    min-height: 40px;
+  }
+
+  .player-modal-loading,
+  .player-modal-error {
+    padding: 2.5rem 1rem;
+  }
+
+  .player-header-info h1 {
+    font-size: 1.1rem;
+  }
+
+  .sync-btn,
+  .tracked-btn,
+  .add-btn {
+    padding: 0.5rem 0.85rem;
+    min-height: 44px;
+  }
+}

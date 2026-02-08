@@ -1,0 +1,16 @@
+/* Global app styles - component styles in their own files */
+
+.loading-full {
+  min-height: 50vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.admin-denied {
+  padding: 3rem;
+  text-align: center;
+  color: #f87171;
+  font-size: 1.1rem;
+}

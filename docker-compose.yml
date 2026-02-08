@@ -1,0 +1,41 @@
+# Запуск рядом с другим сайтом на 80:
+#   Приложение слушает свой порт (по умолчанию 8888). Заход: http://IP:8888
+#   Бэкенд наружу не пробрасывается — запросы идут через nginx во фронте.
+#   Порт фронта можно сменить: "3000:80" или "8888:80" (хост:контейнер).
+
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    env_file:
+      - .env
+    environment:
+      - PORT=8080
+      - DATABASE_URL=file:/data/dayzsmartcf.db
+    volumes:
+      - dayz_data:/data
+    # Порт наружу не открываем — API доступен только через frontend (nginx proxy)
+    expose:
+      - "8080"
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "wget", "-q", "-O", "-", "http://localhost:8080/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+      start_period: 30s
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      # Хост:контейнер — если порт занят, поменяй на свободный (например 3000 или 9090)
+      - "3000:80"
+    depends_on:
+      - backend
+    restart: unless-stopped
+
+volumes:
+  dayz_data:

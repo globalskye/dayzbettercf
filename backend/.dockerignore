@@ -1,0 +1,6 @@
+.env
+*.db
+*.db-journal
+.git
+.gitignore
+*_test.go

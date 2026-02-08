@@ -1,0 +1,586 @@
+.groups-page {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 0 1rem;
+  min-height: 0;
+  height: 100%;
+}
+
+.groups-page.loading {
+  padding: 3rem;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.groups-page .back-link {
+  color: rgba(255, 255, 255, 0.7);
+  text-decoration: none;
+  font-size: 0.9rem;
+  align-self: flex-start;
+}
+
+.groups-page .back-link:hover {
+  color: #7dd3fc;
+}
+
+.groups-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
+  flex-shrink: 0;
+}
+
+.groups-new-input {
+  width: 220px;
+  min-width: 0;
+  padding: 0.6rem 0.85rem;
+  font-size: 0.95rem;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  background: rgba(0, 0, 0, 0.3);
+  color: #fff;
+}
+
+.groups-new-input:focus {
+  outline: none;
+  border-color: #7dd3fc;
+}
+
+.groups-new-input::placeholder {
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.groups-new-btn {
+  padding: 0.6rem 1rem;
+  font-size: 0.9rem;
+  background: #0ea5e9;
+  border: none;
+  border-radius: 8px;
+  color: #fff;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.groups-new-btn:hover:not(:disabled) {
+  background: #0284c7;
+}
+
+.groups-new-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.groups-toolbar .groups-sort-select {
+  width: auto;
+  min-width: 140px;
+  margin-left: auto;
+}
+
+.groups-layout {
+  display: grid;
+  grid-template-columns: minmax(180px, 240px) minmax(0, 1fr);
+  gap: 1.25rem;
+  min-height: 0;
+  flex: 1;
+  align-items: stretch;
+}
+
+@media (max-width: 768px) {
+  .groups-layout {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto minmax(0, 1fr);
+  }
+}
+
+.groups-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 0.85rem 1rem;
+  background: rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  position: sticky;
+  top: 1rem;
+  min-width: 0;
+  flex-shrink: 0;
+  max-height: calc(100vh - 8rem);
+  overflow: hidden;
+}
+
+.groups-sort-select {
+  padding: 0.55rem 0.75rem;
+  font-size: 0.85rem;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  background: rgba(0, 0, 0, 0.3);
+  color: #fff;
+  cursor: pointer;
+}
+
+.groups-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  overflow-y: auto;
+  flex: 1;
+  min-height: 0;
+}
+
+.groups-list li {
+  display: flex;
+  align-items: stretch;
+  margin-bottom: 0.2rem;
+  border-radius: 8px;
+  overflow: hidden;
+  min-width: 0;
+}
+
+.groups-list li.active {
+  background: rgba(14, 165, 233, 0.15);
+  border: 1px solid rgba(14, 165, 233, 0.35);
+}
+
+.group-btn {
+  flex: 1;
+  padding: 0.65rem 0.85rem;
+  text-align: left;
+  background: none;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  font-size: 0.95rem;
+  border-radius: 8px;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.group-btn:hover {
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.group-count {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 0.85rem;
+  font-weight: normal;
+}
+
+.group-delete-btn {
+  flex-shrink: 0;
+  padding: 0.35rem 0.6rem;
+  background: none;
+  border: none;
+  color: rgba(255, 255, 255, 0.4);
+  cursor: pointer;
+  font-size: 1.25rem;
+  line-height: 1;
+  border-radius: 6px;
+}
+
+.group-delete-btn:hover {
+  color: #f87171;
+  background: rgba(248, 113, 113, 0.1);
+}
+
+.groups-main {
+  padding: 1.25rem 1.5rem;
+  background: rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  min-width: 0;
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+  min-height: 400px;
+}
+
+.groups-empty,
+.empty-hint {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 0.95rem;
+  margin: 0;
+}
+
+.group-header {
+  margin-bottom: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  flex-shrink: 0;
+}
+
+.group-header-top {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.35rem;
+}
+
+.group-header h2 {
+  margin: 0;
+  font-size: 1.35rem;
+  font-weight: 600;
+  color: #fff;
+  min-width: 0;
+}
+
+.btn-online-refresh {
+  flex-shrink: 0;
+  padding: 0.45rem 0.9rem;
+  font-size: 0.85rem;
+  background: rgba(34, 197, 94, 0.2);
+  border: 1px solid rgba(34, 197, 94, 0.4);
+  border-radius: 8px;
+  color: #4ade80;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.btn-online-refresh:hover:not(:disabled) {
+  background: rgba(34, 197, 94, 0.3);
+  border-color: rgba(34, 197, 94, 0.6);
+}
+
+.btn-online-refresh:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.btn-data-refresh {
+  flex-shrink: 0;
+  padding: 0.45rem 0.9rem;
+  font-size: 0.85rem;
+  background: rgba(14, 165, 233, 0.2);
+  border: 1px solid rgba(14, 165, 233, 0.45);
+  border-radius: 8px;
+  color: #7dd3fc;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.btn-data-refresh:hover:not(:disabled) {
+  background: rgba(14, 165, 233, 0.3);
+  border-color: rgba(14, 165, 233, 0.6);
+}
+
+.btn-data-refresh:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.btn-loading-wrap {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.group-stats {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.55);
+  margin: 0;
+}
+
+.group-members {
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+}
+
+/* Таблица участников — крупнее */
+.members-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 1rem;
+}
+
+.members-table th {
+  text-align: left;
+  padding: 0.75rem 1rem;
+  color: rgba(255, 255, 255, 0.6);
+  font-weight: 600;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  white-space: nowrap;
+  font-size: 0.9rem;
+}
+
+.members-table th:first-child {
+  padding-left: 0.5rem;
+}
+
+.members-table td {
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  vertical-align: middle;
+}
+
+.members-table tr.member-row:hover {
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.members-table tr.member-row:last-child td {
+  border-bottom: none;
+}
+
+.member-cell-name {
+  min-width: 0;
+  max-width: 100%;
+}
+
+.member-cell-nick,
+.member-cell-playtime {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.88rem;
+  white-space: nowrap;
+}
+
+.member-cell-server {
+  white-space: nowrap;
+}
+
+.member-cell-server .badge.online {
+  margin-right: 0.35rem;
+}
+
+.member-link {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  text-decoration: none;
+  color: inherit;
+  padding: 0.2rem 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font: inherit;
+  text-align: left;
+  width: 100%;
+  min-width: 0;
+}
+
+.member-link:hover {
+  color: #7dd3fc;
+}
+
+.member-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.member-avatar-placeholder {
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.08);
+  flex-shrink: 0;
+}
+
+.member-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+  min-width: 0;
+}
+
+.member-name {
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.member-nick {
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.5);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.member-edit-alias {
+  margin-left: 0.35rem;
+  padding: 0.15rem;
+  background: none;
+  border: none;
+  color: rgba(255, 255, 255, 0.4);
+  cursor: pointer;
+  font-size: 0.8rem;
+  vertical-align: middle;
+}
+
+.member-edit-alias:hover {
+  color: #7dd3fc;
+}
+
+.member-cell-server .badge.online {
+  font-size: 0.7rem;
+  padding: 0.15rem 0.45rem;
+  border-radius: 4px;
+  background: rgba(34, 197, 94, 0.2);
+  color: #4ade80;
+}
+
+.member-server {
+  font-size: 0.78rem;
+  color: rgba(125, 211, 252, 0.9);
+  max-width: 160px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.member-cell-actions {
+  width: 1%;
+  padding-right: 0.5rem;
+  white-space: nowrap;
+}
+
+.member-remove {
+  padding: 0.35rem 0.5rem;
+  background: none;
+  border: none;
+  color: rgba(255, 255, 255, 0.4);
+  cursor: pointer;
+  font-size: 1.15rem;
+  line-height: 1;
+  border-radius: 6px;
+}
+
+.member-remove:hover:not(:disabled) {
+  color: #f87171;
+  background: rgba(248, 113, 113, 0.1);
+}
+
+.member-alias-edit {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  flex-wrap: wrap;
+}
+
+.member-alias-edit input {
+  flex: 1;
+  min-width: 120px;
+  padding: 0.35rem 0.5rem;
+  font-size: 0.85rem;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 6px;
+  background: rgba(0, 0, 0, 0.4);
+  color: #fff;
+}
+
+.member-alias-edit button {
+  padding: 0.25rem 0.5rem;
+  font-size: 0.8rem;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  cursor: pointer;
+}
+
+.member-alias-edit button:first-of-type {
+  background: #22c55e;
+  border-color: #22c55e;
+}
+
+.error-msg {
+  padding: 0.75rem 1rem;
+  margin-bottom: 1rem;
+  background: rgba(248, 113, 113, 0.15);
+  border: 1px solid rgba(248, 113, 113, 0.3);
+  border-radius: 8px;
+  color: #fca5a5;
+  font-size: 0.9rem;
+}
+
+/* ——— Телефон: группы и таблица участников ——— */
+@media (max-width: 768px) {
+  .groups-page {
+    padding: 0 0.75rem;
+  }
+
+  .groups-toolbar {
+    gap: 0.5rem;
+  }
+
+  .groups-new-input {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .groups-main {
+    padding: 1rem;
+    min-height: 300px;
+  }
+
+  .group-header h2 {
+    font-size: 1.2rem;
+  }
+
+  .group-members {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .members-table {
+    min-width: 520px;
+    font-size: 0.95rem;
+  }
+
+  .members-table th,
+  .members-table td {
+    padding: 0.65rem 0.75rem;
+  }
+
+  .member-link {
+    min-height: 44px;
+    padding: 0.35rem 0;
+  }
+
+  .member-remove {
+    min-width: 44px;
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .member-edit-alias {
+    min-height: 36px;
+  }
+}
+
+@media (max-width: 480px) {
+  .groups-page {
+    padding: 0 0.5rem;
+  }
+
+  .groups-sidebar {
+    padding: 0.65rem 0.75rem;
+    max-height: none;
+  }
+
+  .group-btn {
+    padding: 0.6rem 0.75rem;
+    min-height: 44px;
+  }
+
+  .members-table {
+    min-width: 480px;
+  }
+
+  .member-avatar,
+  .member-avatar-placeholder {
+    width: 36px;
+    height: 36px;
+  }
+}
