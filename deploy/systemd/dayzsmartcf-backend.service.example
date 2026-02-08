@@ -1,0 +1,23 @@
+# Пример systemd-юнита для бэкенда (запуск без Docker).
+# Установка:
+#   1. Скопируй в /etc/systemd/system/dayzsmartcf-backend.service
+#   2. Поправь пути и пользователя (WorkingDirectory, User, пути в Environment).
+#   3. sudo systemctl daemon-reload && sudo systemctl enable --now dayzsmartcf-backend
+
+[Unit]
+Description=DayZ Smart CF Backend
+After=network.target
+
+[Service]
+Type=simple
+User=www-data
+WorkingDirectory=/opt/dayzsmartcf
+ExecStart=/opt/dayzsmartcf/server
+Restart=always
+RestartSec=5
+Environment=PORT=8080
+Environment=DATABASE_URL=file:/opt/dayzsmartcf/data/dayzsmartcf.db
+EnvironmentFile=/opt/dayzsmartcf/.env
+
+[Install]
+WantedBy=multi-user.target
