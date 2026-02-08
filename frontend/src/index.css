@@ -1,10 +1,57 @@
+/* ——— Дизайн-система: переменные для единого вида ——— */
 :root {
-  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-  line-height: 1.6;
+  /* Цвета фона */
+  --bg-page: #0d1117;
+  --bg-card: rgba(22, 27, 34, 0.85);
+  --bg-input: rgba(0, 0, 0, 0.35);
+  --bg-hover: rgba(255, 255, 255, 0.06);
+  --bg-header: rgba(0, 0, 0, 0.35);
+  --bg-footer: rgba(0, 0, 0, 0.4);
+
+  /* Границы */
+  --border-subtle: rgba(255, 255, 255, 0.06);
+  --border-default: rgba(255, 255, 255, 0.1);
+  --border-strong: rgba(255, 255, 255, 0.15);
+  --border-focus: rgba(125, 211, 252, 0.5);
+
+  /* Текст */
+  --text-primary: rgba(255, 255, 255, 0.95);
+  --text-secondary: rgba(255, 255, 255, 0.75);
+  --text-muted: rgba(255, 255, 255, 0.5);
+  --text-link: #7dd3fc;
+  --text-link-hover: #bae6fd;
+
+  /* Акценты */
+  --accent-primary: #0ea5e9;
+  --accent-primary-hover: #0284c7;
+  --accent-success: #22c55e;
+  --accent-success-bg: rgba(34, 197, 94, 0.15);
+  --accent-danger: #ef4444;
+  --accent-danger-bg: rgba(239, 68, 68, 0.15);
+  --accent-cyan: #7dd3fc;
+  --accent-cyan-bg: rgba(125, 211, 252, 0.12);
+
+  /* Отступы */
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 2rem;
+  --space-2xl: 2.5rem;
+
+  /* Скругления */
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 14px;
+
+  /* Шрифты */
+  font-family: 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  line-height: 1.5;
   font-weight: 400;
   color-scheme: dark;
-  color: rgba(255, 255, 255, 0.9);
-  background-color: #0f1419;
+  color: var(--text-primary);
+  background-color: var(--bg-page);
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -21,4 +68,25 @@ body {
   overflow-x: hidden;
   padding-left: env(safe-area-inset-left);
   padding-right: env(safe-area-inset-right);
+}
+
+/* Общие стили для страниц и ссылок «Назад» */
+.page-title {
+  margin: 0 0 var(--space-sm);
+  font-size: 1.35rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.back-link {
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-size: 0.9rem;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+}
+
+.back-link:hover {
+  color: var(--text-link);
 }

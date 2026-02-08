@@ -6,20 +6,20 @@
   align-items: center;
   justify-content: center;
   z-index: 1000;
-  padding: 1.5rem;
+  padding: var(--space-lg);
   overflow-y: auto;
 }
 
 .player-modal {
   position: relative;
-  background: linear-gradient(180deg, #1a1a2e 0%, #12121f 100%);
-  border: 1px solid rgba(125, 211, 252, 0.2);
-  border-radius: 16px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-xl);
   max-width: 720px;
   width: 100%;
   max-height: 90vh;
   overflow-y: auto;
-  box-shadow: 0 25px 80px rgba(0, 0, 0, 0.6);
+  box-shadow: 0 25px 80px rgba(0, 0, 0, 0.5);
 }
 
 .player-modal-close {

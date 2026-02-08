@@ -134,12 +134,23 @@ export function Layout() {
               </a>
             </div>
           </section>
+          <section className="layout-contact">
+            <h3 className="layout-plans-title">Контакт</h3>
+            <a
+              href="https://t.me/globa0029"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="layout-contact-link"
+            >
+              Telegram
+            </a>
+          </section>
           <section className="layout-plans">
             <h3 className="layout-plans-title">Планы на будущее</h3>
             <ul className="layout-plans-list">
               <li>Жёсткий поиск людей по банам — фильтры по причине, серверу, дате</li>
               <li>Поиск по Steam-аккаунтам и парсинг друзей — вычисление связей, альты, граф</li>
-              
+              <li>Расширенная аналитика и отчёты</li>
             </ul>
           </section>
           <section className="layout-support">

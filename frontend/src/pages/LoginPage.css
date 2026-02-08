@@ -3,71 +3,78 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 1rem;
+  padding: var(--space-lg);
 }
 
 .login-card {
   width: 100%;
-  max-width: 360px;
-  padding: 2rem;
-  background: rgba(255, 255, 255, 0.06);
-  border-radius: 12px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  max-width: 400px;
+  padding: var(--space-xl);
+  background: var(--bg-card);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-default);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
 }
 
 .login-card h1 {
-  margin: 0 0 0.5rem 0;
+  margin: 0 0 var(--space-sm);
   font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--text-primary);
 }
 
 .login-subtitle {
-  margin: 0 0 1.5rem 0;
-  color: rgba(255, 255, 255, 0.6);
+  margin: 0 0 var(--space-lg);
+  color: var(--text-muted);
   font-size: 0.9rem;
+  line-height: 1.5;
 }
 
 .login-card form label {
   display: block;
-  margin-bottom: 1rem;
+  margin-bottom: var(--space-md);
 }
 
 .login-card form label span {
   display: block;
-  margin-bottom: 0.35rem;
-  font-size: 0.85rem;
-  color: rgba(255, 255, 255, 0.8);
+  margin-bottom: var(--space-xs);
+  font-size: 0.875rem;
+  color: var(--text-secondary);
 }
 
 .login-card form input {
   width: 100%;
-  padding: 0.6rem 0.8rem;
-  background: rgba(0, 0, 0, 0.3);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  border-radius: 6px;
-  color: #fff;
+  padding: var(--space-sm) var(--space-md);
+  background: var(--bg-input);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-md);
+  color: var(--text-primary);
   font-size: 1rem;
   box-sizing: border-box;
+  transition: border-color 0.15s;
 }
 
 .login-card form input:focus {
   outline: none;
-  border-color: #0ea5e9;
+  border-color: var(--border-focus);
 }
 
 .login-card form button {
   width: 100%;
-  padding: 0.7rem 1rem;
-  margin-top: 0.5rem;
-  background: #0ea5e9;
+  padding: var(--space-md) var(--space-lg);
+  margin-top: var(--space-sm);
+  background: var(--accent-primary);
   border: none;
-  border-radius: 6px;
+  border-radius: var(--radius-md);
   color: #fff;
   font-size: 1rem;
+  font-weight: 500;
   cursor: pointer;
+  transition: background 0.15s;
 }
 
 .login-card form button:hover:not(:disabled) {
-  background: #0284c7;
+  background: var(--accent-primary-hover);
 }
 
 .login-card form button:disabled {
@@ -76,11 +83,11 @@
 }
 
 .login-error {
-  padding: 0.6rem;
-  margin-bottom: 1rem;
-  background: rgba(239, 68, 68, 0.2);
+  padding: var(--space-md);
+  margin-bottom: var(--space-md);
+  background: var(--accent-danger-bg);
   border: 1px solid rgba(239, 68, 68, 0.4);
-  border-radius: 6px;
+  border-radius: var(--radius-md);
   color: #f87171;
   font-size: 0.9rem;
 }
