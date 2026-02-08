@@ -163,7 +163,10 @@ func (t *Tracker) updateProfile(playerID int64, cftoolsID string) {
 		_ = t.repo.UpdatePlayerDisplayName(playerID, displayName)
 	}
 
-	nicknames := []string{displayName}
+	nicknames := []string{}
+	if displayName != "" && !isCftoolsIDLike(displayName) && displayName != cftoolsID {
+		nicknames = append(nicknames, displayName)
+	}
 	if len(overviewData) > 0 {
 		var ov struct {
 			Omega struct {
@@ -172,7 +175,7 @@ func (t *Tracker) updateProfile(playerID int64, cftoolsID string) {
 		}
 		if json.Unmarshal(overviewData, &ov) == nil {
 			for _, a := range ov.Omega.Aliases {
-				if a != "" {
+				if a != "" && !isCftoolsIDLike(a) && a != cftoolsID {
 					nicknames = append(nicknames, a)
 				}
 			}

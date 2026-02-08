@@ -3,10 +3,27 @@ package player
 import (
 	"encoding/json"
 	"log"
+	"strings"
 	"time"
 
 	"dayzsmartcf/backend/internal/cftools"
 )
+
+// isCftoolsIDLike возвращает true, если s похож на CFTools ID (24 hex-символа, опционально с суффиксом "+").
+// CFTools иногда отдаёт ID в omega.aliases — такие «ники» не показываем.
+func isCftoolsIDLike(s string) bool {
+	s = strings.TrimSuffix(strings.TrimSpace(s), "+")
+	if len(s) != 24 {
+		return false
+	}
+	for _, c := range s {
+		if (c >= '0' && c <= '9') || (c >= 'a' && c <= 'f') || (c >= 'A' && c <= 'F') {
+			continue
+		}
+		return false
+	}
+	return true
+}
 
 type SyncService struct {
 	cf   *cftools.Client
@@ -144,10 +161,12 @@ func (s *SyncService) fetchAndSavePlayer(cftoolsID, displayName, avatar, searchI
 	// Лог обновления в БД
 	_ = s.repo.LogSync(playerID, p.CftoolsID, p.DisplayName)
 
-	// Save nicknames
+	// Save nicknames (не сохраняем CFTools ID как ник — API иногда отдаёт их в aliases)
 	nicknames := make(map[string]string)
-	nicknames[p.DisplayName] = "display_name"
-	if searchIdentifier != "" {
+	if p.DisplayName != "" && !isCftoolsIDLike(p.DisplayName) {
+		nicknames[p.DisplayName] = "display_name"
+	}
+	if searchIdentifier != "" && !isCftoolsIDLike(searchIdentifier) && searchIdentifier != p.CftoolsID {
 		nicknames[searchIdentifier] = "search"
 	}
 	if len(overviewData) > 0 {
@@ -158,7 +177,7 @@ func (s *SyncService) fetchAndSavePlayer(cftoolsID, displayName, avatar, searchI
 		}
 		if json.Unmarshal(overviewData, &ov) == nil {
 			for _, a := range ov.Omega.Aliases {
-				if a != "" {
+				if a != "" && !isCftoolsIDLike(a) && a != p.CftoolsID {
 					nicknames[a] = "alias"
 				}
 			}
@@ -286,10 +305,14 @@ func buildPlayerFromCFData(cftoolsID string, statusData, playStateData, overview
 			for _, link := range ov.AlternateAccounts.Links {
 				p.LinkedCftoolsIDs = append(p.LinkedCftoolsIDs, link.CftoolsID)
 			}
-			// Ники из CF (для отображения «последний ник» в группах и т.д.)
+			// Ники из CF (исключаем CFTools ID — API иногда отдаёт их в aliases)
 			if len(ov.Omega.Aliases) > 0 {
 				p.Nicknames = make([]string, 0, len(ov.Omega.Aliases)+1)
-				p.Nicknames = append(p.Nicknames, ov.Omega.Aliases...)
+				for _, a := range ov.Omega.Aliases {
+					if a != "" && !isCftoolsIDLike(a) && a != cftoolsID {
+						p.Nicknames = append(p.Nicknames, a)
+					}
+				}
 			}
 			if p.DisplayName != "" {
 				hasDisplay := false

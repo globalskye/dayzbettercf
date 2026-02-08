@@ -210,7 +210,9 @@ func (r *Repository) GetByCftoolsID(cftoolsID string) (*Player, error) {
 	for rows.Next() {
 		var n string
 		_ = rows.Scan(&n)
-		p.Nicknames = append(p.Nicknames, n)
+		if n != "" && !isCftoolsIDLike(n) && n != p.CftoolsID {
+			p.Nicknames = append(p.Nicknames, n)
+		}
 	}
 	rows.Close()
 
